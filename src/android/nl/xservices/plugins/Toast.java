@@ -36,7 +36,7 @@ public class Toast extends CordovaPlugin {
   private ViewGroup viewGroup;
 
   private static final boolean IS_AT_LEAST_LOLLIPOP = Build.VERSION.SDK_INT >= 21;
-  private static final boolean IS_AT_LEAST_PIE = Build.VERSION.SDK_INT >= 28;
+  private static final boolean IS_AT_LEAST_PIE = Build.VERSION.SDK_INT >= 27;
 
   // note that webView.isPaused() is not Xwalk compatible, so tracking it poor-man style
   private boolean isPaused;
