@@ -36,10 +36,7 @@ public class Toast extends CordovaPlugin {
   private ViewGroup viewGroup;
 
   private static final boolean IS_AT_LEAST_LOLLIPOP = Build.VERSION.SDK_INT >= 21;
-  private static final boolean IS_AT_LEAST_PIE = Build.VERSION.SDK_INT >= 27;
-
-  // note that webView.isPaused() is not Xwalk compatible, so tracking it poor-man style
-  private boolean isPaused;
+  private static final boolean IS_AT_LEAST_PIE = Build.VERSION.SDK_INT >= 28;
 
   private String currentMessage;
   private JSONObject currentData;
@@ -54,9 +51,6 @@ public class Toast extends CordovaPlugin {
       return true;
 
     } else if (ACTION_SHOW_EVENT.equals(action)) {
-      if (this.isPaused) {
-        return true;
-      }
 
       final JSONObject options = args.getJSONObject(0);
       final String msg = options.getString("message");
@@ -253,14 +247,4 @@ public class Toast extends CordovaPlugin {
     return viewGroup;
   }
 
-  @Override
-  public void onPause(boolean multitasking) {
-    hide();
-    this.isPaused = true;
-  }
-
-  @Override
-  public void onResume(boolean multitasking) {
-    this.isPaused = false;
-  }
 }
